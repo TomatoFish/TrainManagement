@@ -27,11 +27,18 @@ Api:
 
 ---
 
+Authorization with JWT Bearer:
+
+Temp token:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIn0.0EpItuYypbEL3SKOWJ_mcaD-BZZ89jxbVNXA5dMgD2M
+
+---
+
 ### Used packages:
 
 ASP.NET Core - open-source cross-platform web-app framework provided by Microsoft
 
-Entity Framework Core - open-source ORM provided by microsoft
+Entity Framework Core - open-source ORM provided by Microsoft
 
 AutoMapper - open-source object-to-object mapper
 

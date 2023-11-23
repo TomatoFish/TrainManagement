@@ -14,7 +14,5 @@ services:
     image: "trainmanagement:dev"
     ports: []
     volumes:
-    - "C:\\Users\\user\\AppData\\Roaming\\ASP.NET\\Https:/root/.aspnet/https"
-    - "C:\\Users\\user\\AppData\\Roaming\\Microsoft\\UserSecrets:/root/.microsoft/usersecrets"
     - "D:\\Projects\\WepApps\\TrainManagement\\TrainManagement:/app:rw"
     working_dir: "/app"

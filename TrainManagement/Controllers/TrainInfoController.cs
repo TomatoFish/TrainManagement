@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TrainManagement.Data;
 using TrainManagement.Dtos;
@@ -28,6 +29,7 @@ public class TrainInfoController : ControllerBase
 
     [HttpPost]
     [RequestFormLimits(MultipartBodyLengthLimit = int.MaxValue)]
+    [Authorize("User")]
     public async Task<ActionResult> AddList([FromForm]IFormFile file)
     {
         if (file.ContentType != "text/xml")
@@ -47,6 +49,7 @@ public class TrainInfoController : ControllerBase
     
     [HttpGet]
     [Route("excel")]
+    [Authorize("User")]
     public async Task<ActionResult> GetTrainInfoFile([FromQuery]int trainNumber)
     {
         var train = await _trainRepo.GetTrainByNumber(trainNumber);
@@ -63,6 +66,7 @@ public class TrainInfoController : ControllerBase
     
     [HttpGet]
     [Route("json")]
+    [Authorize("User")]
     public async Task<ActionResult<TrainReport>> GetTrainInfo([FromQuery]int trainNumber)
     {
         var train = await _trainRepo.GetTrainByNumber(trainNumber);

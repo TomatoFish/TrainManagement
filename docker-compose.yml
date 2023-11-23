@@ -1,0 +1,41 @@
+﻿version: '3.8'
+services:
+  train_management:
+    container_name: train_management_service
+    restart: on-failure
+    ports:
+      - "8010:80"
+      - "8011:443"
+    build:
+      context: .
+      dockerfile: TrainManagement/Dockerfile
+    networks:
+      - db_network
+    depends_on:
+      - train_management_db
+    environment:
+      - ConnectionStrings__DbContext=User Id=${POSTGRES_USER:?database user not set};Password=${POSTGRES_PASSWORD:?database password not set};Server=train_management_db;Port=5432;Database=${POSTGRES_DB:?database name not set};
+      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_ENVIRONMENT=Production
+
+  train_management_db:
+    container_name: train_management_postgres_db
+    image: postgres:15.4-alpine
+    restart: on-failure
+    ports:
+      - "5431:5432"
+    networks:
+      - db_network
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:?database user not set}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?database password not set}
+      - POSTGRES_DB=${POSTGRES_DB:?database name not set}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+networks:
+  db_network:
+    driver: bridge
+
+volumes:
+  db_data:
